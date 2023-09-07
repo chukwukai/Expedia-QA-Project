@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import { first } from "cypress/types/lodash"
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -56,6 +59,16 @@
     cy.className(elementValue).each(($el)=>{
       if($el.text() === textValue){
           cy.wrap($el).click()
+          return;
       }
   })
   })
+  
+  Cypress.Commands.add('getDateListOption', (elementValue , textValue)=>{
+    cy.get(elementValue).each(($el)=>{
+      const firstValue = $el.first()
+      if(firstValue.text() === textValue){
+          cy.wrap($el).click()
+      }
+  })
+})

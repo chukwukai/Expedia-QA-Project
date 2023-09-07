@@ -76,24 +76,30 @@ describe('Expedia Test Cases', () => {
     it('Test Case 4', () => {
         cy.dataStId(HomeScreen.getStayDestinationInputField).type("Universal Orlando Resort")
         cy.dataStId(HomeScreen.getSearchListOption).first().click()
-        cy.getIdAttr(HomeScreen.getDateFormField).click()
-        cy.dataStId(HomeScreen.getDatePickerModal).should('be.visible')
+        cy.get('.uitk-layout-flex-item > .uitk-field > .uitk-fake-input').click()
+        //cy.getIdAttr(HomeScreen.getDateFormField).click()
+        cy.get('.uitk-calendar ').should('be.visible')
         cy.get(HomeScreen.getDateMonthYearValue).first().invoke('text').then(($el)=>{
-            var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+            //var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+            var previousButton = cy.get('[data-stid=uitk-calendar-navigation-controls-previous-button]');
             if(!$el.includes(getCurrentMonth +" "+String(today.getFullYear()))){
                 (previousButton).then(($elVal1)=>{
                     cy.wrap($elVal1).first().click( {force: true})
                 })
             }else{
-                var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+                //var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
                 (previousButton).then(($elVal2)=>{
                     expect($elVal2).to.be.disabled
                 })
             }
         })
-        cy.get(`[data-day='${checkinDate}']`).first().click();
-        cy.get(`[data-day='${checkoutDate}']`).first().click();
-        cy.dataStId(HomeScreen.getApplyConfirmationButton).click()
+        //cy.get(`[data-day='${checkinDate}']`).first().click();
+        cy.get('.uitk-date-number.uitk-date-number-today.uitk-type-300.uitk-type-regular').click()
+        cy.getDateListOption('.uitk-date-number.uitk-date-number-default.uitk-type-300.uitk-type-regular', String(checkoutDate))
+
+        //cy.get(`[data-day='${checkoutDate}']`).first().click();
+        //cy.dataStId(HomeScreen.getApplyConfirmationButton).click()
+        cy.get('.uitk-button.uitk-button-medium.uitk-button-has-text.uitk-button-primary.uitk-layout-flex-item').click()
         cy.getIdAttr(HomeScreen.getSearchButton).click()
         cy.dataStId(SearchResultScreen.getHotelInfoTitle).should('be.visible')
     })
@@ -101,23 +107,30 @@ describe('Expedia Test Cases', () => {
     it('Test Case 5', () => {
         cy.dataStId(HomeScreen.getStayDestinationInputField).type("Universal Orlando Resort")
         cy.dataStId(HomeScreen.getSearchListOption).first().click()
-        cy.getIdAttr(HomeScreen.getDateFormField).click()
+        cy.get('.uitk-layout-flex-item > .uitk-field > .uitk-fake-input').click()
+        //cy.getIdAttr(HomeScreen.getDateFormField).click()
+        cy.get('.uitk-calendar ').should('be.visible')
         cy.get(HomeScreen.getDateMonthYearValue).first().invoke('text').then(($el)=>{
-            var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+            //var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+            var previousButton = cy.get('[data-stid=uitk-calendar-navigation-controls-previous-button]');
             if(!$el.includes(getCurrentMonth +" "+String(today.getFullYear()))){
                 (previousButton).then(($elVal1)=>{
                     cy.wrap($elVal1).first().click( {force: true})
                 })
             }else{
-                var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
+                //var previousButton = cy.dataStId(HomeScreen.getDatePickerPaging);
                 (previousButton).then(($elVal2)=>{
                     expect($elVal2).to.be.disabled
                 })
             }
         })
-        cy.get('[data-day='+String(today.getDate())+']').first().click()
-        cy.get('[data-day='+String(today.getDate() + 7) +']').first().click()
-        cy.dataStId(HomeScreen.getApplyConfirmationButton).click()
+        //cy.get(`[data-day='${checkinDate}']`).first().click();
+        cy.get('.uitk-date-number.uitk-date-number-today.uitk-type-300.uitk-type-regular').click()
+        cy.getDateListOption('.uitk-date-number.uitk-date-number-default.uitk-type-300.uitk-type-regular', String(checkoutDate))
+
+        //cy.get(`[data-day='${checkoutDate}']`).first().click();
+        //cy.dataStId(HomeScreen.getApplyConfirmationButton).click()
+        cy.get('.uitk-button.uitk-button-medium.uitk-button-has-text.uitk-button-primary.uitk-layout-flex-item').click()
         cy.getIdAttr(HomeScreen.getSearchButton).click()
         cy.dataStId(SearchResultScreen.getHotelInfoTitle).should('be.visible')
         cy.dataStId(SearchResultScreen.getOpenRoomPicker).click()

@@ -29,6 +29,7 @@ declare global {
         getIdAttr(value: string): Chainable<JQuery<HTMLElement>>
         getAriaControls(value: string): Chainable<JQuery<HTMLElement>>
         selectListOption(elementValue: string , textValue: string): Chainable<JQuery<HTMLElement>>
+        getDateListOption(elementValue: string , textValue: string): Chainable<JQuery<HTMLElement>>
       }
     }
   }
