@@ -17,7 +17,7 @@ export enum HomeScreen  {
     getDateFormFieldLabel = '.uitk-layout-flex.uitk-layout-flex-flex-direction-row.uitk-layout-flex-gap-three',
     getDatePickerPaging = 'date-picker-paging',
     getDatePickerModal = 'date-picker-month',
-    getDateMonthYearValue = '.uitk-date-picker-month-name.uitk-type-medium'
+    getDateMonthYearValue = '.uitk-month-label'
 }
 
 export enum SearchResultScreen{
